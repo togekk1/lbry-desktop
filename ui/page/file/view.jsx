@@ -10,6 +10,7 @@ import FileRenderDownload from 'component/fileRenderDownload';
 import FileDetails from 'component/fileDetails';
 import FileValues from 'component/fileValues';
 import RecommendedContent from 'component/recommendedContent';
+import PlaylistContent from 'component/playlistContent';
 import CommentsList from 'component/commentsList';
 
 export const FILE_WRAPPER_CLASS = 'file-page__video-container';
@@ -28,6 +29,7 @@ type Props = {
   obscureNsfw: boolean,
   isMature: boolean,
   linkedComment: any,
+  playlist?: string,
 };
 
 class FilePage extends React.Component<Props> {
@@ -133,7 +135,7 @@ class FilePage extends React.Component<Props> {
   lastReset: ?any;
 
   render() {
-    const { uri, renderMode, costInfo, obscureNsfw, isMature, linkedComment } = this.props;
+    const { uri, renderMode, costInfo, obscureNsfw, isMature, linkedComment, playlist } = this.props;
 
     if (obscureNsfw && isMature) {
       return this.renderBlockedPage();
@@ -148,8 +150,8 @@ class FilePage extends React.Component<Props> {
 
           <CommentsList uri={uri} linkedComment={linkedComment} />
         </div>
-
-        <RecommendedContent uri={uri} />
+        {playlist && <PlaylistContent name={playlist} uri={uri} />}
+        {!playlist && <RecommendedContent uri={uri} />}
       </Page>
     );
   }
