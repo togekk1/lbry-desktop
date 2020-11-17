@@ -101,7 +101,7 @@ function DiscoverPage(props: Props) {
         hideFilters={!dynamicRouteProps}
         header={repostedUri ? <span /> : undefined}
         tileLayout={repostedUri ? false : tileLayout}
-        defaultOrderBy={dynamicRouteProps ? undefined : CS.ORDER_BY_TOP}
+        defaultOrderBy={dynamicRouteProps ? ORDER_BY_TRENDING : CS.ORDER_BY_TOP}
         claimType={claimType ? [claimType] : undefined}
         headerLabel={headerLabel}
         tags={tags}
