@@ -169,9 +169,9 @@ export const PRIMARY_CONTENT_CHANNEL_IDS = [
 ];
 
 export const PRIMARY_CONTENT = {
-  link: `/$/${PAGES.DISCOVER}?${CS.CLAIM_TYPE}=${CS.CLAIM_STREAM}&${
-    CS.CHANNEL_IDS_KEY
-  }=${PRIMARY_CONTENT_CHANNEL_IDS.join(',')}`,
+  route: '/$/general',
+  icon: ICONS.HOME,
+  title: __('General'),
   options: {
     claimType: ['stream'],
     orderBy: ['release_time'],
