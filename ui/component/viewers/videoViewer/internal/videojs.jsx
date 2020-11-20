@@ -7,6 +7,7 @@ import videojs from 'video.js/dist/alt/video.core.novtt.min.js';
 import 'video.js/dist/alt/video-js-cdn.min.css';
 import eventTracking from 'videojs-event-tracking';
 import isUserTyping from 'util/detect-typing';
+import analytics from 'analytics';
 // import './adstest.js';
 // import './adstest2.js';
 // import './adstest.css';
@@ -168,6 +169,7 @@ export default React.memo<Props>(function VideoJs(props: Props) {
 
   React.useEffect(() => {
     if (showAds) {
+      analytics.adsFetchedEvent();
       const url = `https://tag.targeting.unrulymedia.com/rmp/216276/0/vast2?vastfw=vpaid&url=${encodeURI(
         window.location.href
       )}&w=300&h=500`;
