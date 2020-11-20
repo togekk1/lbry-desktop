@@ -73,7 +73,7 @@ function VideoViewer(props: Props) {
     clearPosition,
     desktopPlayStartTime,
     homepageData,
-    authenticated,
+    // authenticated,
   } = props;
   const claimId = claim && claim.claim_id;
   const channelClaimId = claim && claim.signing_channel && claim.signing_channel.claim_id;
@@ -100,7 +100,7 @@ function VideoViewer(props: Props) {
     ...COMMUNITY_CHANNEL_IDS,
     ...FINCANCE_CHANNEL_IDS,
   ];
-  const showAds = !authenticated && Boolean(channelClaimId) && adApprovedChannelIds.includes(channelClaimId);
+  const showAds = Boolean(channelClaimId) && adApprovedChannelIds.includes(channelClaimId);
 
   /* isLoading was designed to show loading screen on first play press, rather than completely black screen, but
   breaks because some browsers (e.g. Firefox) block autoplay but leave the player.play Promise pending */
