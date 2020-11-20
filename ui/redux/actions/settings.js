@@ -292,19 +292,37 @@ export function doFetchLanguage(language) {
   };
 }
 
-export function doSetLanguage(language) {
+export function doSetHomepage(code) {
+  return (dispatch, getState) => {
+    let languageCode;
+    if (code === window.navigator.language.slice(0, 2)) {
+      languageCode = null;
+    } else {
+      languageCode = code;
+    }
+    dispatch(doSetClientSetting(SETTINGS.HOMEPAGE, languageCode));
+  };
+}
+
+export function doSetLanguage(lang) {
   return (dispatch, getState) => {
     const { settings } = getState();
     const { daemonSettings } = settings;
     const { share_usage_data: shareSetting } = daemonSettings;
     const isSharingData = shareSetting || IS_WEB;
+    let language;
+    if (lang === window.navigator.language.slice(0, 2)) {
+      language = null;
+    } else {
+      language = lang;
+    }
 
-    if (settings.language !== language || (settings.loadedLanguages && !settings.loadedLanguages.includes(language))) {
+    if (settings.language !== lang || (settings.loadedLanguages && !settings.loadedLanguages.includes(lang))) {
       // this should match the behavior/logic in index-web.html
-      fetch('https://lbry.com/i18n/get/lbry-desktop/app-strings/' + language + '.json')
+      fetch('https://lbry.com/i18n/get/lbry-desktop/app-strings/' + lang + '.json')
         .then(r => r.json())
         .then(j => {
-          window.i18n_messages[language] = j;
+          window.i18n_messages[lang] = j;
           dispatch({
             type: LOCAL_ACTIONS.DOWNLOAD_LANGUAGE_SUCCESS,
             data: {
