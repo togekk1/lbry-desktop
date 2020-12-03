@@ -2,7 +2,9 @@
 import * as PAGES from 'constants/pages';
 import React, { useEffect } from 'react';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
-import SettingsPage from 'page/settings';
+import Loadable from 'react-loadable';
+
+// import SettingsPage from 'page/settings';
 import SettingsNotificationsPage from 'page/settingsNotifications';
 import SettingsAdvancedPage from 'page/settingsAdvanced';
 import HelpPage from 'page/help';
@@ -12,46 +14,124 @@ import BackupPage from 'page/backup';
 //  @if TARGET='web'
 import Code2257Page from 'web/page/code2257';
 // @endif
-import ReportPage from 'page/report';
+
+// import ReportPage from 'page/report';
+
 import ShowPage from 'page/show';
-import PublishPage from 'page/publish';
+// import PublishPage from 'page/publish';
 import DiscoverPage from 'page/discover';
 import HomePage from 'page/home';
 import InvitedPage from 'page/invited';
-import RewardsPage from 'page/rewards';
+// import RewardsPage from 'page/rewards';
 import FileListPublished from 'page/fileListPublished';
-import InvitePage from 'page/invite';
+// import InvitePage from 'page/invite';
 import SearchPage from 'page/search';
 import LibraryPage from 'page/library';
-import WalletPage from 'page/wallet';
-import TagsFollowingPage from 'page/tagsFollowing';
-import ChannelsFollowingPage from 'page/channelsFollowing';
+// import WalletPage from 'page/wallet';
+// import TagsFollowingPage from 'page/tagsFollowing';
+// import ChannelsFollowingPage from 'page/channelsFollowing';
 import ChannelsFollowingDiscoverPage from 'page/channelsFollowingDiscover';
-import TagsFollowingManagePage from 'page/tagsFollowingManage';
-import ListBlockedPage from 'page/listBlocked';
+// import TagsFollowingManagePage from 'page/tagsFollowingManage';
+// import ListBlockedPage from 'page/listBlocked';
 import FourOhFourPage from 'page/fourOhFour';
 import SignInPage from 'page/signIn';
 import SignUpPage from 'page/signUp';
 import PasswordResetPage from 'page/passwordReset';
 import PasswordSetPage from 'page/passwordSet';
 import SignInVerifyPage from 'page/signInVerify';
-import ChannelsPage from 'page/channels';
+// import ChannelsPage from 'page/channels';
 import EmbedWrapperPage from 'page/embedWrapper';
 import TopPage from 'page/top';
 import Welcome from 'page/welcome';
 import CreatorDashboard from 'page/creatorDashboard';
-import RewardsVerifyPage from 'page/rewardsVerify';
+// import RewardsVerifyPage from 'page/rewardsVerify';
 import CheckoutPage from 'page/checkoutPage';
-import ChannelNew from 'page/channelNew';
-import BuyPage from 'page/buy';
+// import ChannelNew from 'page/channelNew';
+// import BuyPage from 'page/buy';
 import NotificationsPage from 'page/notifications';
 import SignInWalletPasswordPage from 'page/signInWalletPassword';
-import YoutubeSyncPage from 'page/youtubeSync';
+// import YoutubeSyncPage from 'page/youtubeSync';
 import AdsTestPage from 'page/adsTest';
 
 import { LINKED_COMMENT_QUERY_PARAM } from 'constants/comment';
 import { parseURI, isURIValid } from 'lbry-redux';
 import { SITE_TITLE, WELCOME_VERSION } from 'config';
+
+const Loading = () => <h1>Loading...</h1>;
+const PublishPage = Loadable({
+  loader: () => import('page/publish'),
+  loading: Loading,
+});
+
+const ChannelsFollowingPage = Loadable({
+  loader: () => import('page/channelsFollowing'),
+  loading: Loading,
+});
+
+const RewardsPage = Loadable({
+  loader: () => import('page/rewards'),
+  loading: Loading,
+});
+
+const InvitePage = Loadable({
+  loader: () => import('page/invite'),
+  loading: Loading,
+});
+
+const WalletPage = Loadable({
+  loader: () => import('page/wallet'),
+  loading: Loading,
+});
+
+const TagsFollowingManagePage = Loadable({
+  loader: () => import('page/tagsFollowingManage'),
+  loading: Loading,
+});
+
+const TagsFollowingPage = Loadable({
+  loader: () => import('page/tagsFollowing'),
+  loading: Loading,
+});
+
+const YoutubeSyncPage = Loadable({
+  loader: () => import('page/youtubeSync'),
+  loading: Loading,
+});
+
+const ListBlockedPage = Loadable({
+  loader: () => import('page/listBlocked'),
+  loading: Loading,
+});
+
+const BuyPage = Loadable({
+  loader: () => import('page/buy'),
+  loading: Loading,
+});
+
+const ChannelNew = Loadable({
+  loader: () => import('page/channelNew'),
+  loading: Loading,
+});
+
+const RewardsVerifyPage = Loadable({
+  loader: () => import('page/rewardsVerify'),
+  loading: Loading,
+});
+
+const ChannelsPage = Loadable({
+  loader: () => import('page/channels'),
+  loading: Loading,
+});
+
+const SettingsPage = Loadable({
+  loader: () => import('page/settings'),
+  loading: Loading,
+});
+
+const ReportPage = Loadable({
+  loader: () => import('page/report'),
+  loading: Loading,
+});
 
 // Tell the browser we are handling scroll restoration
 if ('scrollRestoration' in history) {
