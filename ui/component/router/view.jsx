@@ -5,8 +5,8 @@ import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 // import SettingsPage from 'page/settings';
-import SettingsNotificationsPage from 'page/settingsNotifications';
-import SettingsAdvancedPage from 'page/settingsAdvanced';
+// import SettingsNotificationsPage from 'page/settingsNotifications';
+// import SettingsAdvancedPage from 'page/settingsAdvanced';
 import HelpPage from 'page/help';
 //  @if TARGET='app'
 import BackupPage from 'page/backup';
@@ -19,7 +19,7 @@ import Code2257Page from 'web/page/code2257';
 
 import ShowPage from 'page/show';
 // import PublishPage from 'page/publish';
-import DiscoverPage from 'page/discover';
+// import DiscoverPage from 'page/discover';
 import HomePage from 'page/home';
 import InvitedPage from 'page/invited';
 // import RewardsPage from 'page/rewards';
@@ -30,7 +30,7 @@ import LibraryPage from 'page/library';
 // import WalletPage from 'page/wallet';
 // import TagsFollowingPage from 'page/tagsFollowing';
 // import ChannelsFollowingPage from 'page/channelsFollowing';
-import ChannelsFollowingDiscoverPage from 'page/channelsFollowingDiscover';
+// import ChannelsFollowingDiscoverPage from 'page/channelsFollowingDiscover';
 // import TagsFollowingManagePage from 'page/tagsFollowingManage';
 // import ListBlockedPage from 'page/listBlocked';
 import FourOhFourPage from 'page/fourOhFour';
@@ -43,12 +43,12 @@ import SignInVerifyPage from 'page/signInVerify';
 import EmbedWrapperPage from 'page/embedWrapper';
 import TopPage from 'page/top';
 import Welcome from 'page/welcome';
-import CreatorDashboard from 'page/creatorDashboard';
+// import CreatorDashboard from 'page/creatorDashboard';
 // import RewardsVerifyPage from 'page/rewardsVerify';
 import CheckoutPage from 'page/checkoutPage';
 // import ChannelNew from 'page/channelNew';
 // import BuyPage from 'page/buy';
-import NotificationsPage from 'page/notifications';
+// import NotificationsPage from 'page/notifications';
 import SignInWalletPasswordPage from 'page/signInWalletPassword';
 // import YoutubeSyncPage from 'page/youtubeSync';
 import AdsTestPage from 'page/adsTest';
@@ -63,8 +63,38 @@ const PublishPage = Loadable({
   loading: Loading,
 });
 
+const SettingsNotificationsPage = Loadable({
+  loader: () => import('page/settingsNotifications'),
+  loading: Loading,
+});
+
+const SettingsAdvancedPage = Loadable({
+  loader: () => import('page/settingsAdvanced'),
+  loading: Loading,
+});
+
 const ChannelsFollowingPage = Loadable({
   loader: () => import('page/channelsFollowing'),
+  loading: Loading,
+});
+
+const ChannelsFollowingDiscoverPage = Loadable({
+  loader: () => import('page/channelsFollowingDiscover'),
+  loading: Loading,
+});
+
+const DiscoverPage = Loadable({
+  loader: () => import('page/discover'),
+  loading: Loading,
+});
+
+const CreatorDashboard = Loadable({
+  loader: () => import('page/creatorDashboard'),
+  loading: Loading,
+});
+
+const NotificationsPage = Loadable({
+  loader: () => import('page/notifications'),
   loading: Loading,
 });
 
