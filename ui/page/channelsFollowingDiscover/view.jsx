@@ -25,7 +25,7 @@ function ChannelsFollowingDiscover(props: Props) {
     // blockedChannels,
     homepageData,
   } = props;
-  const { PRIMARY_CONTENT_CHANNEL_IDS } = homepageData;
+  const { PRIMARY_CHEESE_CHANNEL_IDS } = homepageData;
   //   let rowData: Array<ChannelsFollowingItem> = [];
   //   const notChannels = subscribedChannels
   //     .map(({ uri }) => uri)
