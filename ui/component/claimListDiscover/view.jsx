@@ -115,6 +115,7 @@ function ClaimListDiscover(props: Props) {
     searchInLanguage,
     limitClaimsPerChannel,
     releaseTime,
+    scrollAnchor,
   } = props;
   const didNavigateForward = history.action === 'PUSH';
   const { search } = location;
