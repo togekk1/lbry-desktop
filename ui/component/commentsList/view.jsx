@@ -7,12 +7,12 @@ import classnames from 'classnames';
 import CommentView from 'component/comment';
 import Spinner from 'component/spinner';
 import Button from 'component/button';
-import Yrbl from 'component/yrbl';
 import Card from 'component/common/card';
 import CommentCreate from 'component/commentCreate';
 import usePersistedState from 'effects/use-persisted-state';
 import { ENABLE_COMMENT_REACTIONS } from 'config';
 import { sortComments } from 'util/comments';
+import Empty from 'component/common/empty';
 
 type Props = {
   comments: Array<Comment>,
@@ -211,16 +211,7 @@ function CommentList(props: Props) {
         <>
           <CommentCreate uri={uri} />
 
-          {!isFetchingComments && hasNoComments && (
-            <div className="empty main-empty">
-              <Yrbl
-                type="happy"
-                title={__('Hmmm')}
-                small
-                subtitle={__('My favorite was the part where they said that thing that time. What do you think?')}
-              />
-            </div>
-          )}
+          {!isFetchingComments && hasNoComments && <Empty text={__('That was pretty deep. What do you think?')} />}
 
           <ul className="comments" ref={commentRef}>
             {comments &&
