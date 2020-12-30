@@ -92,7 +92,6 @@ export default function SearchTopClaim(props: Props) {
           <ClaimPreview
             hideRepostLabel
             uri={winningUri}
-            type="large"
             properties={claim => (
               <span className="claim-preview__custom-properties">
                 <ClaimEffectiveAmount uri={winningUri} />

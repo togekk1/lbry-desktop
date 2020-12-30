@@ -130,3 +130,6 @@ export const PIN = 'Pin';
 export const BEST = 'Best';
 export const CREATOR_LIKE = 'CreatorLike';
 export const CHEF = 'Chef';
+export const STAR = 'Star';
+export const STAR_GRADIENT = 'StarGradient';
+export const STAR_NOT_WINNING = 'StarNotWinning';

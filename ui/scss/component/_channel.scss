@@ -166,7 +166,7 @@ $metadata-z-index: 1;
   // Quick hack to get this to work
   // We should have a generic style for "header with button next to it"
   .button {
-    margin-left: var(--spacing-m);
+    margin-left: var(--spacing-xs);
   }
 
   @media (max-width: $breakpoint-small) {
@@ -327,4 +327,69 @@ $metadata-z-index: 1;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   background-color: var(--color-card-background-highlighted);
+}
+
+.channel-staked__tooltip {
+  display: flex;
+  align-items: center;
+}
+
+.channel-staked__tooltip-text {
+  margin-left: var(--spacing-xs);
+  font-size: var(--font-xsmall);
+
+  .icon--LBC {
+    opacity: 0.7;
+    margin-top: -2px;
+  }
+}
+
+.channel-staked__wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.channel-staked__wrapper--large {
+  margin-left: var(--spacing-xxs);
+  margin-top: calc(var(--spacing-xs) * -1);
+}
+
+.channel-staked__indicator {
+  margin-left: 2px;
+  z-index: 3;
+}
+
+.channel-staked__amount {
+  display: inline-block;
+  font-size: var(--font-xxsmall);
+  margin-left: var(--spacing-s);
+
+  .credit-amount {
+    color: var(--color-gray-4);
+  }
+}
+
+.channel-staked__indicator--level0 {
+  color: var(--color-gray-4);
+  fill: none;
+}
+
+.channel-staked__indicator--level1 {
+  color: #a7f3d0;
+  fill: #a7f3d0;
+}
+
+.channel-staked__indicator--level2 {
+  color: #93c5fd;
+  fill: #93c5fd;
+}
+
+.channel-staked__indicator--level3 {
+  color: #c4b5fd;
+  fill: #c4b5fd;
+}
+
+.channel-staked__indicator--level4 {
+  color: #fcd34d;
+  fill: #fcd34d;
 }

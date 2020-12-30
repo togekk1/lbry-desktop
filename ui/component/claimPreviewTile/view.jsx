@@ -179,7 +179,12 @@ function ClaimPreviewTile(props: Props) {
       </NavLink>
       <NavLink {...navLinkProps}>
         <h2 className="claim-tile__title">
-          <TruncatedText text={title || (claim && claim.name)} lines={2} />
+          <TruncatedText text={title || (claim && claim.name)} lines={isChannel ? 1 : 2} />
+          {isChannel && (
+            <div className="claim-tile__about">
+              <UriIndicator uri={uri} link />
+            </div>
+          )}
         </h2>
       </NavLink>
       <div>
@@ -190,7 +195,7 @@ function ClaimPreviewTile(props: Props) {
             </div>
           ) : (
             <React.Fragment>
-              <UriIndicator uri={uri} link hideAnonymous>
+              <UriIndicator uri={uri} link hideAnonymous hideStakedIndicator>
                 <ChannelThumbnail thumbnailPreview={channelThumbnail} />
               </UriIndicator>
 

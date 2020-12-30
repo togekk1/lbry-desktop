@@ -2,7 +2,6 @@
 // A housing for all of our icons. Mostly taken from https://github.com/feathericons/react-feather
 import * as ICONS from 'constants/icons';
 import React, { forwardRef } from 'react';
-// $FlowFixMe
 import { v4 as uuid } from 'uuid';
 
 type IconProps = {
@@ -12,6 +11,7 @@ type IconProps = {
 
 type CustomProps = {
   size?: number,
+  className?: string,
 };
 
 // Returns a react component
@@ -1015,4 +1015,74 @@ export const icons = {
       <path d="m 18.089706,2.6673324 c -0.458672,0 -0.914415,0.081053 -1.342833,0.2381801 -0.726068,-1.5175206 -2.625165,-2.67785413 -4.515474,-2.67785413 -1.902023,0 -3.8128297,1.16033353 -4.5408481,2.67785413 C 7.2621303,2.7483855 6.8063878,2.6673324 6.348691,2.6673324 c -2.1528256,0 -3.9045598,1.7507491 -3.9045598,3.9035835 0,2.0230385 1.4648199,3.6410591 3.4146614,3.8752841 v 8.262918 h 2.9276892 v -3.415632 c 0.00968,-0.26944 0.2273915,-0.487951 0.4977084,-0.487951 0.2693563,0 0.4879486,0.218539 0.4879486,0.487951 v 3.415632 h 1.9420352 v -4.391535 c 0,-0.269439 0.217626,-0.487951 0.487948,-0.487951 0.269357,0 0.487946,0.218539 0.487946,0.487951 v 4.391535 h 1.951795 v -3.415632 c 0.01964,-0.26944 0.238125,-0.487951 0.507465,-0.487951 0.270325,0 0.487949,0.218539 0.468432,0.487951 v 3.415632 h 2.927689 V 10.4462 c 1.980095,-0.234307 3.445891,-1.8522456 3.445891,-3.8752841 0,-2.1528344 -1.750758,-3.9035835 -3.901634,-3.9035835" />
     </svg>
   ),
+  [ICONS.STAR]: (props: CustomProps & { isControlling: boolean }) => (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 -2 22 24"
+      width={props.size || '18'}
+      height={props.size || '18'}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+  ),
+  [ICONS.STAR_NOT_WINNING]: (props: CustomProps & { isControlling: boolean }) => (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 -2 24 24"
+      width={props.size || '18'}
+      height={props.size || '18'}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+    </svg>
+  ),
+  [ICONS.STAR_GRADIENT]: (props: CustomProps) => {
+    const randomId = uuid();
+    const randomId2 = uuid();
+
+    return (
+      <svg
+        className={props.className}
+        width={props.size || '18'}
+        height={props.size || '18'}
+        viewBox="0 -2 22 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11 1L14.09 7.26L21 8.27L16 13.14L17.18 20.02L11 16.77L4.82 20.02L6 13.14L1 8.27L7.91 7.26L11 1Z"
+          fill={`url(#${randomId})`}
+          stroke={`url(#${randomId2})`}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <defs>
+          <linearGradient id={randomId} x1="11" y1="1" x2="11" y2="20.02" gradientUnits="userSpaceOnUse">
+            <stop offset="0.09375" stopColor="#A4018B" />
+            <stop offset="0.359375" stopColor="#CD015C" />
+            <stop offset="0.583333" stopColor="#F80009" />
+            <stop offset="1" stopColor="#F59E0B" />
+          </linearGradient>
+          <linearGradient id={randomId2} x1="11" y1="1" x2="11" y2="20.02" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#7E019E" />
+            <stop offset="0.296875" stopColor="#CD0174" />
+            <stop offset="0.567708" stopColor="#EE0123" />
+            <stop offset="1" stopColor="#F59E0B" />
+          </linearGradient>
+        </defs>
+      </svg>
+    );
+  },
 };

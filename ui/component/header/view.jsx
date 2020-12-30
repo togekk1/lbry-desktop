@@ -9,7 +9,6 @@ import Button from 'component/button';
 import WunderBar from 'component/wunderbar';
 import Icon from 'component/common/icon';
 import { Menu, MenuList, MenuButton, MenuItem } from '@reach/menu-button';
-import Tooltip from 'component/common/tooltip';
 import NavigationButton from 'component/navigationButton';
 import { LOGO_TITLE } from 'config';
 import { useIsMobile } from 'effects/use-screensize';
@@ -317,19 +316,18 @@ const Header = (props: Props) => {
                   {/* Add an empty span here so we can use the same style as above */}
                   {/* This pushes the close button to the right side */}
                   <span />
-                  <Tooltip label={__('Go Back')}>
-                    <Button
-                      button="alt"
-                      // className="button--header-close"
-                      icon={ICONS.REMOVE}
-                      {...closeButtonNavigationProps}
-                      // @if TARGET='app'
-                      onDoubleClick={e => {
-                        e.stopPropagation();
-                      }}
-                      // @endif
-                    />
-                  </Tooltip>
+                  <Button
+                    title={__('Go Back')}
+                    button="alt"
+                    // className="button--header-close"
+                    icon={ICONS.REMOVE}
+                    {...closeButtonNavigationProps}
+                    // @if TARGET='app'
+                    onDoubleClick={e => {
+                      e.stopPropagation();
+                    }}
+                    // @endif
+                  />
                 </div>
               )
             )}
