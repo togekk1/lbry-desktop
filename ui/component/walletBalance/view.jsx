@@ -9,6 +9,7 @@ import Icon from 'component/common/icon';
 import HelpLink from 'component/common/help-link';
 import Card from 'component/common/card';
 import LbcSymbol from 'component/common/lbc-symbol';
+import I18nMessage from 'component/i18nMessage';
 
 type Props = {
   balance: number,
@@ -18,35 +19,85 @@ type Props = {
   tipsBalance: number,
   doOpenModal: string => void,
   hasSynced: boolean,
+  doFetchUtxoCounts: () => void,
+  doUtxoConsolidate: () => void,
+  fetchingUtxoCounts: boolean,
+  utxoCounts: { [string]: number },
+  pendingUtxoConsolidating: Array<string>,
 };
 
 const WalletBalance = (props: Props) => {
-  const { balance, claimsBalance, supportsBalance, tipsBalance, doOpenModal, hasSynced } = props;
+  const {
+    balance,
+    claimsBalance,
+    supportsBalance,
+    tipsBalance,
+    doOpenModal,
+    hasSynced,
+    pendingUtxoConsolidating,
+    doUtxoConsolidate,
+    doFetchUtxoCounts,
+    utxoCounts,
+  } = props;
+  const otherCount = utxoCounts['other'] || 0;
 
+  React.useEffect(() => {
+    if (balance > 500) {
+      doFetchUtxoCounts();
+    }
+  }, [doFetchUtxoCounts, balance]);
   return (
     <React.Fragment>
       <section className="columns">
-        <Card
-          title={<LbcSymbol postfix={balance} isTitle />}
-          subtitle={__('Available Balance')}
-          actions={
-            <div className="section__actions">
-              <Button button="primary" label={__('Buy')} icon={ICONS.BUY} navigate={`/$/${PAGES.BUY}`} />
-              <Button
-                button="secondary"
-                label={__('Receive')}
-                icon={ICONS.RECEIVE}
-                onClick={() => doOpenModal(MODALS.WALLET_RECEIVE)}
-              />
-              <Button
-                button="secondary"
-                label={__('Send')}
-                icon={ICONS.SEND}
-                onClick={() => doOpenModal(MODALS.WALLET_SEND)}
-              />
-            </div>
-          }
-        />
+        <div>
+          <div className="section">
+            <Card
+              title={<LbcSymbol postfix={balance} isTitle />}
+              subtitle={__('Available Balance')}
+              actions={
+                <>
+                  <div className="section__actions--between">
+                    <div className="section__actions">
+                      <Button button="primary" label={__('Buy')} icon={ICONS.BUY} navigate={`/$/${PAGES.BUY}`} />
+                      <Button
+                        button="secondary"
+                        label={__('Receive')}
+                        icon={ICONS.RECEIVE}
+                        onClick={() => doOpenModal(MODALS.WALLET_RECEIVE)}
+                      />
+                      <Button
+                        button="secondary"
+                        label={__('Send')}
+                        icon={ICONS.SEND}
+                        onClick={() => doOpenModal(MODALS.WALLET_SEND)}
+                      />
+                    </div>
+                  </div>
+                  {(otherCount > 2 || pendingUtxoConsolidating) && (
+                    <p className="help">
+                      <I18nMessage
+                        tokens={{
+                          now: (
+                            <Button
+                              button="link"
+                              onClick={() => doUtxoConsolidate()}
+                              label={pendingUtxoConsolidating.length ? __('Consolidating') : __('Consolidate Now')}
+                            />
+                          ),
+                          help: <HelpLink href="https://lbry.com/faq/transaction-types" />,
+                        }}
+                      >
+                        Your wallet has a lot of change lying around. Consolidating will speed up your transactions.
+                        This could take some time. %now%%help%
+                      </I18nMessage>
+                    </p>
+                  )}
+                </>
+              }
+            />
+          </div>
+        </div>
+
         <div>
           <React.Fragment>
             {/* @if TARGET='app' */}
