@@ -174,10 +174,6 @@ if (!gotSingleInstanceLock) {
     await startDaemon();
     startSandbox();
 
-    if (isDev) {
-      await installDevtools();
-    }
-
     rendererWindow = createWindow(appState);
     tray = createTray(rendererWindow);
 
@@ -199,6 +195,12 @@ if (!gotSingleInstanceLock) {
     });
   });
 }
+
+app.whenReady().then(async () => {
+  if (isDev) {
+    await installDevtools();
+  }
+})
 
 app.on('activate', () => {
   if (rendererWindow) {

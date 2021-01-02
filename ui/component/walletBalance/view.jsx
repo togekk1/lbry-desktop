@@ -22,9 +22,13 @@ type Props = {
   doFetchUtxoCounts: () => void,
   doUtxoConsolidate: () => void,
   fetchingUtxoCounts: boolean,
+  consolidatingUtxos: boolean,
   utxoCounts: { [string]: number },
   pendingUtxoConsolidating: Array<string>,
 };
+
+const WALLET_CONSOLIDATE_UTXOS = 500;
+const LARGE_WALLET_BALANCE = 500;
 
 const WalletBalance = (props: Props) => {
   const {
@@ -37,12 +41,13 @@ const WalletBalance = (props: Props) => {
     pendingUtxoConsolidating,
     doUtxoConsolidate,
     doFetchUtxoCounts,
+    consolidatingUtxos,
     utxoCounts,
   } = props;
-  const otherCount = utxoCounts['other'] || 0;
+  const { other: otherCount = 0 } = utxoCounts || {};
 
   React.useEffect(() => {
-    if (balance > 500) {
+    if (balance > LARGE_WALLET_BALANCE) {
       doFetchUtxoCounts();
     }
   }, [doFetchUtxoCounts, balance]);
@@ -73,7 +78,7 @@ const WalletBalance = (props: Props) => {
                       />
                     </div>
                   </div>
-                  {(otherCount > 2 || pendingUtxoConsolidating) && (
+                  {(otherCount > WALLET_CONSOLIDATE_UTXOS || pendingUtxoConsolidating.length || consolidatingUtxos) && (
                     <p className="help">
                       <I18nMessage
                         tokens={{
@@ -81,7 +86,12 @@ const WalletBalance = (props: Props) => {
                             <Button
                               button="link"
                               onClick={() => doUtxoConsolidate()}
-                              label={pendingUtxoConsolidating.length ? __('Consolidating') : __('Consolidate Now')}
+                              disabled={pendingUtxoConsolidating.length || consolidatingUtxos}
+                              label={
+                                pendingUtxoConsolidating.length || consolidatingUtxos
+                                  ? __('Consolidating')
+                                  : __('Consolidate Now')
+                              }
                             />
                           ),
                           help: <HelpLink href="https://lbry.com/faq/transaction-types" />,
