@@ -27,8 +27,8 @@ type Props = {
   pendingUtxoConsolidating: Array<string>,
 };
 
-const WALLET_CONSOLIDATE_UTXOS = 500;
-const LARGE_WALLET_BALANCE = 500;
+const WALLET_CONSOLIDATE_UTXOS = 400;
+const LARGE_WALLET_BALANCE = 100;
 
 const WalletBalance = (props: Props) => {
   const {
