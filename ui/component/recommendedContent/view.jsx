@@ -65,7 +65,13 @@ export default function RecommendedContent(props: Props) {
           type="small"
           loading={isSearching}
           uris={recommendedContent}
-          injectedItem={SHOW_ADS && !isAuthenticated && IS_WEB && <Ads small type={SIMPLE_SITE ? 'google' : 'video'} />}
+          injectedItem={
+            SHOW_ADS && IS_WEB && SIMPLE_SITE ? (
+              <Ads small type={'google'} />
+            ) : (
+              !isAuthenticated && <Ads small type={'video'} />
+            )
+          }
           empty={__('No related content found')}
         />
       }
