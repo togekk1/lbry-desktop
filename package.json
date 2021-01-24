@@ -47,6 +47,7 @@
     "postinstall:warning": "echo '\n\nWARNING\n\nNot all node modules were installed because NODE_ENV is set to \"production\".\nThis should only be set after installing dependencies with \"yarn\". The app will not work.\n\n'"
   },
   "dependencies": {
+    "@videojs/vhs-utils": "^3.0.0",
     "auto-launch": "^5.0.5",
     "electron-dl": "^1.11.0",
     "electron-log": "^2.2.12",
@@ -116,7 +117,7 @@
     "dom-scroll-into-view": "^1.2.1",
     "dotenv-defaults": "^2.0.1",
     "dotenv-webpack": "^1.8.0",
-    "electron": "9.4.0",
+    "electron": "^13.0.0-beta.13",
     "electron-builder": "^22.9.1",
     "electron-devtools-installer": "^3.1.1",
     "electron-is-dev": "^0.3.0",
