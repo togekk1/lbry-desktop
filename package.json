@@ -1,6 +1,6 @@
 {
   "name": "lbry",
-  "version": "0.49.4",
+  "version": "0.49.5",
   "description": "A browser for the LBRY network, a digital marketplace controlled by its users.",
   "keywords": [
     "lbry"
@@ -53,7 +53,7 @@
     "electron-updater": "^4.2.4",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
-	"remove-markdown": "^0.3.0",
+    "remove-markdown": "^0.3.0",
     "tempy": "^0.6.0",
     "videojs-logo": "^2.1.4"
   },
@@ -111,7 +111,7 @@
     "dom-scroll-into-view": "^1.2.1",
     "dotenv-defaults": "^2.0.1",
     "dotenv-webpack": "^1.8.0",
-    "electron": "^11.2.1",
+    "electron": "^12.0.0",
     "electron-builder": "^22.9.1",
     "electron-devtools-installer": "^3.1.1",
     "electron-is-dev": "^0.3.0",
@@ -184,7 +184,7 @@
     "redux-thunk": "^2.2.0",
     "remark": "^9.0.0",
     "remark-attr": "^0.8.3",
-	"remark-breaks": "^1.0.5",
+    "remark-breaks": "^1.0.5",
     "remark-emoji": "^2.0.1",
     "remark-frontmatter": "^2.0.0",
     "remark-react": "^8.0.0",

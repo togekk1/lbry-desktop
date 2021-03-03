@@ -23,7 +23,7 @@ function GetAppLangCode() {
   return SUPPORTED_BROWSER_LANGUAGES[langCode];
 }
 
-export default appState => {
+export default (appState) => {
   // Get primary display dimensions from Electron.
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
 
@@ -54,7 +54,8 @@ export default appState => {
       webSecurity: !isDev,
       plugins: true,
       nodeIntegration: true,
-      enableRemoteModule: true
+      enableRemoteModule: true,
+      contextIsolation: false,
     },
   };
   const lbryProto = 'lbry://';
@@ -81,10 +82,7 @@ export default appState => {
     //     an anchor and converts it to lbry://channel/#claimid. We remove the slash here as well.
     //   - ? also interpreted as an anchor, remove slash also.
     if (process.platform === 'win32') {
-      deepLinkingURI = deepLinkingURI
-        .replace(/\/$/, '')
-        .replace('/#', '#')
-        .replace('/?', '?');
+      deepLinkingURI = deepLinkingURI.replace(/\/$/, '').replace('/#', '#').replace('/?', '?');
     }
   } else {
     deepLinkingURI = appState.macDeepLinkingURI || '';
@@ -110,7 +108,7 @@ export default appState => {
 
   window.loadURL(rendererURL + deepLinkingURI);
 
-  window.on('close', event => {
+  window.on('close', (event) => {
     if (appState.isQuitting) {
       return;
     }
@@ -127,9 +125,11 @@ export default appState => {
       }
     }
 
-    const getToTrayWhenClosedSetting = window.webContents.executeJavaScript(`localStorage.getItem('${TO_TRAY_WHEN_CLOSED}')`);
+    const getToTrayWhenClosedSetting = window.webContents.executeJavaScript(
+      `localStorage.getItem('${TO_TRAY_WHEN_CLOSED}')`
+    );
 
-    getToTrayWhenClosedSetting.then(toTrayWhenClosedSetting => {
+    getToTrayWhenClosedSetting.then((toTrayWhenClosedSetting) => {
       const closeApp = toTrayWhenClosedSetting === 'false';
 
       if (closeApp) {
@@ -153,7 +153,7 @@ export default appState => {
         message: 'LBRY is not responding. Would you like to quit?',
         cancelId: 0,
       },
-      buttonIndex => {
+      (buttonIndex) => {
         if (buttonIndex === 1) app.quit();
       }
     );
@@ -172,7 +172,7 @@ export default appState => {
     window.webContents.session.setUserAgent(`LBRY/${app.getVersion()}`);
 
     // restore the user's previous language - we have to do this from here because only electron process can access app.getLocale()
-    window.webContents.executeJavaScript("localStorage.getItem('language')").then(storedLanguage => {
+    window.webContents.executeJavaScript("localStorage.getItem('language')").then((storedLanguage) => {
       const language =
         storedLanguage && storedLanguage !== 'undefined' && storedLanguage !== 'null'
           ? storedLanguage
