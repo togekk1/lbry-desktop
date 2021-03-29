@@ -13,8 +13,14 @@
   .search__legend {
     background-color: var(--color-secondary-alt);
     color: var(--color-secondary);
-    margin-bottom: var(--spacing-s);
+    margin-bottom: var(--spacing-l);
     padding: var(--spacing-xxs);
+    border-radius: var(--border-radius);
+  }
+
+  &.dark .search__legend {
+    background-color: transparent;
+    color: var(--color-secondary-alt);
   }
 
   fieldset:not(:first-child) {
@@ -24,6 +30,7 @@
   .radio,
   .checkbox {
     display: inline-block;
+    margin-top: 0;
 
     &:not(:first-of-type) {
       margin-left: var(--spacing-m);
