@@ -9,6 +9,7 @@
 
 .search__options {
   margin-top: var(--spacing-l);
+  margin-left: var(--spacing-l);
 
   .search__legend {
     background-color: var(--color-secondary-alt);
@@ -35,6 +36,10 @@
     &:not(:first-of-type) {
       margin-left: var(--spacing-m);
     }
+  }
+
+  .radio label::after {
+    background-color: var(--color-secondary-alt);
   }
 }
 
